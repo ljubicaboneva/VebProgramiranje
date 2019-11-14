@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -22,13 +23,17 @@ public class PizzaFilter implements Filter {
 
         String pizza = (String) httpRequest.getSession().getAttribute("pizzaType");
         String path = httpRequest.getServletPath();
-
+        HttpSession session = httpRequest.getSession();
         if(!path.equals("") && (pizza == null || pizza.isEmpty())){
             httpResp.sendRedirect("/");
 
+            session.setAttribute("message","Choose pizza!");
+
         }
         else {
+
             chain.doFilter(req, resp);
+
 
         }
     }

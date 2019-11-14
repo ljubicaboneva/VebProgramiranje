@@ -25,7 +25,18 @@
     </th:block>
 
     <br/>
+
     <button type="submit">Submit</button>
+        <div><th:block>
+            <div th:text="${message}"></div>
+        </th:block></div>
+
+        <h3>Crate new pizza!</h3>
+        <label>Name:</label>
+        <input name="newPizzaName" type="text"><br><br>
+        <label>Description:</label>
+        <input name="newPizzaDesc" type="text"><br><br>
+        <button>Create</button>
     </form>
 </main>
 </body>

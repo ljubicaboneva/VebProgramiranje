@@ -26,11 +26,13 @@ public class ShowPizza extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
         WebContext webContext = new WebContext(request, response, request.getServletContext());
         List<Pizza> pizzas = pizzaService.listPizzas();
         webContext.setVariable("pizzas", pizzas);
+        webContext.setVariable("message", session.getAttribute("message"));
         response.setContentType("text/html; charset=UTF-8");
-        System.out.println("[WP-Log] {ShowPizza}");
+        System.out.println("[WP-Log] {doGet ShowPizzas}");
         this.springTemplateEngine.process("listPizzas.html", webContext, response.getWriter());
 
     }
@@ -40,7 +42,13 @@ public class ShowPizza extends HttpServlet {
 
         HttpSession session = request.getSession();
         String pizzaType = request.getParameter("pizza");
+        String newPizza = request.getParameter("newPizzaName");
+        String newPizzaDesc = request.getParameter("newPizzaDesc");
+        if(!newPizza.equals("") && !newPizzaDesc.equals("")){
+            pizzaService.listPizzas().add(new Pizza(newPizza,newPizzaDesc));
+        }
         session.setAttribute("pizzaType",pizzaType);
+        System.out.println("[WP-Log] {doPost ShowPizzas}");
         response.sendRedirect("/selectPizza.do");
 
 

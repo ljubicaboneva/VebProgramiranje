@@ -26,6 +26,7 @@ public class ConfirmationInfo extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        System.out.println("[WP-Log] {doPost ConfirmationInfo}");
         response.sendRedirect("/logout");
 
     }
@@ -44,7 +45,7 @@ public class ConfirmationInfo extends HttpServlet {
         webContext.setVariable("ipaddress", request.getRemoteHost());
         webContext.setVariable("browser", request.getHeader("User-Agent"));
         response.setContentType("text/html; charset=UTF-8");
-        System.out.println("[WP-Log] {ConfirmationInfo}");
+        System.out.println("[WP-Log] {doGet ConfirmationInfo}");
         this.springTemplateEngine.process("confirmationInfo.html", webContext, response.getWriter());
     }
 }

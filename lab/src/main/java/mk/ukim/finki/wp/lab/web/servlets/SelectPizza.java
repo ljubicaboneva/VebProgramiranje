@@ -28,6 +28,7 @@ public class SelectPizza extends HttpServlet {
         HttpSession session = request.getSession();
         String pizzaSize = request.getParameter("pizza_size");
         session.setAttribute("pizzaSize",pizzaSize);
+        System.out.println("[WP-Log] {doPost SelectPizza}");
         response.sendRedirect("/PizzaOrder.do");
 
 
@@ -35,12 +36,12 @@ public class SelectPizza extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
         order.pizzaType = (String) session.getAttribute("pizzaType");
         session.setAttribute("myOrder",order);
         WebContext webContext = new WebContext(request, response, request.getServletContext());
         webContext.setVariable("pizzaType", session.getAttribute("pizzaType"));
-        System.out.println("[WP-Log] {SelectPizza}");
+        session.setAttribute("message","");
+        System.out.println("[WP-Log] {doGet SelectPizza}");
         this.springTemplateEngine.process("selectPizzaSize.html", webContext, response.getWriter());
 
     }

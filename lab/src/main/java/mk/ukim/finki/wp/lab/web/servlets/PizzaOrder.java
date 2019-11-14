@@ -27,6 +27,7 @@ public class PizzaOrder extends HttpServlet {
         Order order = (Order) session.getAttribute("myOrder");
         order.clientName = request.getParameter("clientName");
         order.clientAddress = request.getParameter("clientAddress");
+        System.out.println("[WP-Log] {doPost PizzaOrder}");
         response.sendRedirect("/ConfirmationInfo.do");
     }
 
@@ -39,7 +40,7 @@ public class PizzaOrder extends HttpServlet {
         webContext.setVariable("pizzaType", session.getAttribute("pizzaType"));
         webContext.setVariable("pizzaSize", session.getAttribute("pizzaSize"));
         response.setContentType("text/html; charset=UTF-8");
-        System.out.println("[WP-Log] {PizzaOrder}");
+        System.out.println("[WP-Log] {doGet PizzaOrder}");
         this.springTemplateEngine.process("deliveryInfo.html", webContext, response.getWriter());
     }
 }
