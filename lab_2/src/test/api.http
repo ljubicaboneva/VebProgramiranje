@@ -1,0 +1,85 @@
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/x-www-form-urlencoded
+
+name=ketchap&spicy=true&amount=20&veggie=true
+
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/x-www-form-urlencoded
+
+name=ham&spicy=true&amount=20&veggie=true
+
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/x-www-form-urlencoded
+
+name=ketchap&spicy=true&amount=20&veggie=true
+
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/x-www-form-urlencoded
+
+name=mushrooms&spicy=true&amount=20&veggie=true
+
+###
+PATCH http://localhost:8080/ingredients/pepper
+Content-Type: application/x-www-form-urlencoded
+
+spicy=true&amount=80&veggie=true
+
+###
+DELETE http://localhost:8080/ingredients/ketchap
+
+###
+GET http://localhost:8080/ingredients
+page: 0
+page-size: 10
+
+
+###
+GET http://localhost:8080/ingredients/pepper
+
+###
+GET http://localhost:8080/ingredients?spicy=false
+
+
+# PIZZA TEST
+###
+POST http://localhost:8080/pizzas
+Content-Type: application/x-www-form-urlencoded
+
+name=margarita&description=good&ingredients=ham,pepper
+
+###
+POST http://localhost:8080/pizzas
+Content-Type: application/x-www-form-urlencoded
+
+name=stelata&description=good&ingredients=pepper
+
+
+###
+GET http://localhost:8080/pizzas/margarita
+
+###
+GET http://localhost:8080/pizzas
+
+###
+GET http://localhost:8080/ingredients/pepper/pizzas
+
+###
+GET http://localhost:8080/pizzas?totalIngredients=3
+
+###
+GET http://localhost:8080/pizzas/compare?pizza1=kapricioza&pizza2=margarita
+
+###
+PUT http://localhost:8080/pizzas/margarita
+Content-Type: application/x-www-form-urlencoded
+
+name=margarita&description=good+pizza&ingredients=ketchup,cheese&veggie=true
+
+###
+GET http://localhost:8080/pizzas/spicy
+
+###
